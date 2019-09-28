@@ -1,5 +1,5 @@
 {
-  "appId": "com.flyrbrd.volhacks",
+  "appId": "io.ionic.starter",
   "appName": "flyrbrd",
   "bundledWebRuntime": false,
   "npmClient": "npm",

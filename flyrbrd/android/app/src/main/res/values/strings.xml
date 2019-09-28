@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">flyrbrd</string>
     <string name="title_activity_main">flyrbrd</string>
-    <string name="package_name">com.flyrbrd.volhacks</string>
-    <string name="fileprovider_authority">com.flyrbrd.volhacks.fileprovider</string>
-    <string name="custom_url_scheme">com.flyrbrd.volhacks</string>
+    <string name="package_name">io.ionic.starter</string>
+    <string name="fileprovider_authority">io.ionic.starter.fileprovider</string>
+    <string name="custom_url_scheme">io.ionic.starter</string>
 </resources>
