@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions } from '@ionic-native/camera-preview';
+import jsQR, { QRCode } from "jsqr";
 import { VisionService } from '../services/vision.service';
+import { HomeService } from '../services/home.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,7 +12,7 @@ import { VisionService } from '../services/vision.service';
 })
 export class HomePage {
 
-  constructor(private vision: VisionService) {}
+  constructor(private vision: VisionService, private homeService: HomeService) { }
 
   ionViewWillEnter() {
     const options = {
@@ -35,8 +38,8 @@ export class HomePage {
 
   takePicture() {
     const cameraOptions = {
-      width: 640,
-      height: 640,
+      width: window.screen.width,
+      height: window.screen.height,
       quality: 85
     };
 
@@ -49,6 +52,18 @@ export class HomePage {
             console.log(innerErr);
           }
         );
+        this.homeService.jsQR_fromBase64(base64[0]).then(
+          (val) => {
+            let imageData: Uint8ClampedArray;
+            console.log(val);
+            imageData = val;
+            const code = jsQR(imageData, window.screen.height, window.screen.width);
+            if (code) {
+              console.log(code.data);
+            }
+          },
+          (err) => { console.log(err); }
+        )
       },
       (err) => { console.log(err); }
     );
