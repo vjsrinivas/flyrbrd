@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+
 import jsQR, { QRCode } from "jsqr";
 import { HomeService } from '../services/home.service';
 
 let LOGO: string = "";
+
+
+import { VisionService } from '../services/vision.service';
 
 @Component({
   selector: 'app-home',
@@ -11,18 +15,11 @@ let LOGO: string = "";
 })
 export class HomePage {
 
+
   constructor(homeService: HomeService) {
 
     let imageData: Uint8ClampedArray;
-    /*
-    console.log(LOGO);
-
-
-    let qr_2 = this.base64ToBuffer(LOGO);
-    console.log(qr_2);
-    const qr = Uint8ClampedArray.from(qr_2);
-    console.log(qr);
-    */
+  
 
     homeService.jsQR_fromBase64(LOGO).then(
       (val) => {
