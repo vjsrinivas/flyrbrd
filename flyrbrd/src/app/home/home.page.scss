@@ -4,8 +4,37 @@ html, body, ion-content{
     background-color: var(--ion-background-color) !important;
 }
 
-.card {
-    height: 300px;
-    width: 100%;
-    background-color: black;
+div.card {
+    height: 50px;
+    width: 300px;
+    background-color: white;
+    border: 2px solid #3880ff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    bottom: 0;
+    position: fixed;
+    border-bottom: 0;
+    left: calc(50% - 150px);
+    transition: 0.375s ease-out height;
+    z-index: 9999;
+
+    ion-button.card {
+        height: 50px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        margin: -1px;
+        font-weight: 600;
+    }
+
+    ion-content.body {
+        height: 100%;
+    }
+}
+
+ion-fab {
+    margin-bottom: 80px;
+}
+
+div.expand {
+    height: 600px;
 }

@@ -9,7 +9,11 @@ import { VisionService } from '../services/vision.service';
 })
 export class HomePage {
 
-  constructor(private vision: VisionService) {}
+  public classExpand: string;
+  private viewList: HTMLElement;
+  constructor(private vision: VisionService) {
+    this.classExpand = 'card';
+  }
 
   ionViewWillEnter() {
     const options = {
@@ -33,6 +37,11 @@ export class HomePage {
     );
   }
 
+  ionViewDidEnter() {
+    this.viewList = document.getElementById('viewList');
+    console.log(this.viewList);
+  }
+
   takePicture() {
     const cameraOptions = {
       width: 640,
@@ -44,7 +53,8 @@ export class HomePage {
       (base64) => {
         this.vision.grab_packet_data(base64).subscribe(
           (val) => {
-            this.vision.parse_packet_data(val);
+            const img = 'data:image/jpeg;base64,' + val;
+            this.vision.parse_packet_data(img);
           }, (innerErr) => {
             console.log(innerErr);
           }
@@ -54,11 +64,7 @@ export class HomePage {
     );
   }
 
-  swipeUp(event: any) {
-    console.log(event);
-  }
-
-  swipedown(event: any) {
-    console.log(event);
+  expand() {
+    this.viewList.classList.toggle('expand');
   }
 }

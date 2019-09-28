@@ -12,12 +12,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeService } from './services/home.service';
 import { HttpClientModule } from '@angular/common/http';
 
-import { IonicSwipeAllModule } from 'ionic-swipe-all';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, IonicSwipeAllModule],
+  imports: [BrowserModule, IonicModule.forRoot(), IonicStorageModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     StatusBar,
     SplashScreen,

@@ -1,7 +1,14 @@
 <ion-content>
-  <!--fab-button here please:-->
-  <ion-button (click)="takePicture()">Test me</ion-button>
+  <div id="viewList" class="card">
+    <ion-button (click)="expand()" class="card" expand="full" fill="outline">VIEW LIST</ion-button>
+    <ion-content class="body">
+      
+    </ion-content>
+  </div>
 
-  <!-- <div class="card" (swipeup)="swipeUp($event)" (swipedown)="swipeDown($event)">
-  </div> -->
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="takePicture()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

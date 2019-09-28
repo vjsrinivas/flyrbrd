@@ -102,5 +102,6 @@
     <plugin name="cordova-plugin-camera-preview" spec="^0.11.0">
         <variable name="ANDROID_SUPPORT_LIBRARY_VERSION" value="26+" />
     </plugin>
+    <plugin name="cordova-sqlite-storage" spec="^3.4.0" />
     <engine name="android" spec="^7.1.4" />
 </widget>

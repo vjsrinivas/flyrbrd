@@ -15,17 +15,15 @@ export class VisionService {
 
   grab_packet_data(base64img: string): Observable<any> {
     const googleUrl = 'https://vision.googleapis.com/v1/images:annotate';
+    console.log(base64img);
     const request = {
-      requests: [
-        {
+      requests: [{
           image: {
             content: base64img
           },
-          features: [
-            {
-              type: 'TEXT_DETECTION'
-            }
-          ]
+          features: [{
+              type: 'DOCUMENT_TEXT_DETECTION'
+          }]
         }
       ]
     };
