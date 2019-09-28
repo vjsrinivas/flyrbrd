@@ -1,4 +1,4 @@
-package com.flyrbrd.volhacks;
+package io.ionic.starter;
 
 import android.os.Bundle;
 

@@ -1,5 +1,7 @@
 {
   "name": "flyrbrd",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
