@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-
-import jsQR, { QRCode } from "jsqr";
-import { HomeService } from '../services/home.service';
-
-let LOGO: string = "";
-
-
+import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions } from '@ionic-native/camera-preview';
 import { VisionService } from '../services/vision.service';
 
 @Component({
@@ -15,33 +9,56 @@ import { VisionService } from '../services/vision.service';
 })
 export class HomePage {
 
+  constructor(private vision: VisionService) {}
 
-  constructor(homeService: HomeService) {
+  ionViewWillEnter() {
+    const options = {
+      x: 0,
+      y: 0,
+      width: window.screen.width,
+      height: window.screen.height,
+      camera: CameraPreview.CAMERA_DIRECTION.BACK,
+      toBack: true,
+      tapPhoto: false,
+      tapFocus: true,
+      previewDrag: false,
+      storeToFile: false,
+      disableExifHeaderStripping: false,
+      alpha: 1
+    };
 
-    let imageData: Uint8ClampedArray;
-  
+    CameraPreview.startCamera(options).then(
+      (val) => { console.log(val); },
+      (err) => { console.log(err); }
+    );
+  }
 
-    homeService.jsQR_fromBase64(LOGO).then(
-      (val) => {
-        console.log(val);
-        imageData = val;
-        const code = jsQR(imageData, 1000, 1333);
-        if (code) {
-          console.log(code.data);
-        }
+  takePicture() {
+    const cameraOptions = {
+      width: 640,
+      height: 640,
+      quality: 85
+    };
+
+    CameraPreview.takePicture(cameraOptions).then(
+      (base64) => {
+        this.vision.grab_packet_data(base64).subscribe(
+          (val) => {
+            this.vision.parse_packet_data(val);
+          }, (innerErr) => {
+            console.log(innerErr);
+          }
+        );
       },
       (err) => { console.log(err); }
-    )
-
+    );
   }
 
-
-
-  public base64ToBuffer(base64: string) {
-    return Uint8Array.from(atob(base64), c => c.charCodeAt(0))
+  swipeUp(event: any) {
+    console.log(event);
   }
 
-  test() {
-    alert();
+  swipedown(event: any) {
+    console.log(event);
   }
 }

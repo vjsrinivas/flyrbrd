@@ -1,3 +1,11 @@
-.list {
-    
+html, body, ion-content{
+    --ion-background-color: transparent !important;
+    background: var(--ion-background-color) !important;
+    background-color: var(--ion-background-color) !important;
+}
+
+.card {
+    height: 300px;
+    width: 100%;
+    background-color: black;
 }
