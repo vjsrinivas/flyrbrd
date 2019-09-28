@@ -1,0 +1,7 @@
+{
+  "appId": "com.flyrbrd.volhacks",
+  "appName": "flyrbrd",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www"
+}
