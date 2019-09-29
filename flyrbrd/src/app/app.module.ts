@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeService } from './services/home.service';
 import { HttpClientModule } from '@angular/common/http';
 
+import {LogicProvider } from "./services/read"
 import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
+    LogicProvider,
     HomeService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

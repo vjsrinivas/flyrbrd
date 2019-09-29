@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions } from '@ionic-native/camera-preview';
 import { VisionService } from '../services/vision.service';
+import { LogicProvider } from '../services/read';
+import { Observable } from "rxjs";
+import { EventData } from '../../interfaces/data.interface';
+
 
 @Component({
   selector: 'app-home',
@@ -8,11 +12,17 @@ import { VisionService } from '../services/vision.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
   public classExpand: string;
   private viewList: HTMLElement;
-  constructor(private vision: VisionService) {
+  public viewListWord: string;
+  events$: Observable<EventData[]>;
+  public totalEvents: number;
+
+  constructor(private vision: VisionService,
+    public _read: LogicProvider) {
     this.classExpand = 'card';
+    this.viewListWord = 'VIEW LIST';
+    this.totalEvents = 0;
   }
 
   ionViewWillEnter() {
@@ -35,11 +45,15 @@ export class HomePage {
       (val) => { console.log(val); },
       (err) => { console.log(err); }
     );
+
+    this.events$ = this._read.getData()
+    this.events$.subscribe((res) => {
+      this.totalEvents = res.length;
+    })
   }
 
   ionViewDidEnter() {
     this.viewList = document.getElementById('viewList');
-    console.log(this.viewList);
   }
 
   takePicture() {
@@ -66,5 +80,10 @@ export class HomePage {
 
   expand() {
     this.viewList.classList.toggle('expand');
+    if(this.viewListWord === 'VIEW LIST') {
+      this.viewListWord = 'EXIT LIST';
+    } else {
+      this.viewListWord = 'VIEW LIST';
+    }
   }
 }

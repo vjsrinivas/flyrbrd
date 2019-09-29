@@ -1,7 +1,19 @@
 <ion-content>
   <div id="viewList" class="card">
-    <ion-button (click)="expand()" class="card" expand="full" fill="outline">VIEW LIST</ion-button>
+    <ion-button (click)="expand()" class="card" color="light" expand="full" fill="outline"><span class="btnText">{{viewListWord}}</span></ion-button>
     <ion-content class="body">
+      <!--Events here-->
+      <ion-list lines="full" *ngFor="let e of events$ | async">
+        <ion-item class="something">
+          <ion-label>
+            <div class="title">{{ e.title }}</div> 
+            <div class="date"><b>Date: </b>{{ e.date }} </div>
+            <div class="location"><b>Location: </b>{{ e.location }} </div>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <!--Checks for events-->
+      <span style="text-align:center; font-size: 20px;">{{ totalEvents == 0 ? 'No events found' : ''}}</span>
       
     </ion-content>
   </div>

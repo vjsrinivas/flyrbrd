@@ -8,10 +8,11 @@ div.card {
     height: 50px;
     width: 300px;
     background-color: white;
-    border: 2px solid #3880ff;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border: 1px solid lightgray;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     bottom: 0;
+    box-shadow: 0 4px 8px 0 rgb(0,0,0,0.2);
     position: fixed;
     border-bottom: 0;
     left: calc(50% - 150px);
@@ -20,14 +21,28 @@ div.card {
 
     ion-button.card {
         height: 50px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border: 1px solid lightgray;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
         margin: -1px;
         font-weight: 600;
+        border:none;
     }
-
+    span.btnText
+    {
+        color:darkgrey;
+    }
     ion-content.body {
         height: 100%;
+    }
+    .title{
+        font-size: 25px;
+    }
+    .date {
+        font-size: 15px;
+    }
+    .location {
+        font-size: 15px;
     }
 }
 
