@@ -9,7 +9,7 @@ export class HomeService {
     return new Promise<Uint8ClampedArray>((resolve, reject) => {
       const image: HTMLImageElement = document.createElement('img');
       image.src = 'data:image/jpg;base64,'+base64;
-      console.log('data:image/jpg;base64,'+base64);
+      //console.log('data:image/jpg;base64,'+base64);
       image.onload = () => {
         const canvas: HTMLCanvasElement = document.createElement('canvas');
         const context: CanvasRenderingContext2D = canvas.getContext('2d');
@@ -20,7 +20,7 @@ export class HomeService {
 
         try {
           const imageData = context.getImageData(0, 0, image.width, image.height).data.buffer;
-          console.log(imageData);
+          //console.log(imageData);
           const arrayClamp = new Uint8ClampedArray(imageData);
           console.log(arrayClamp);
           // const qrCode: QRCode = jsQR(imageData.data, imageData.width, imageData.height);
@@ -31,5 +31,17 @@ export class HomeService {
       };
     });
   }
+
+  getImageDimensions(file): Promise<any> {
+    return new Promise<any> ((resolve, reject) => {
+      let i = new Image();
+      i.src = 'data:image/jpg;base64,'+file;
+      i.onload = function(){
+        const img = {w: i.width, h: i.height};
+        resolve(img);
+      };
+    })
+  };
+
   constructor() { }
 }
