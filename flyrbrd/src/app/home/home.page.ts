@@ -63,14 +63,12 @@ export class HomePage {
         console.log("here goes getImageDimensions");
         this.homeService.getImageDimensions(base64[0]).then(
           (img) => {
-            console.log(img);
             this.homeService.jsQR_fromBase64(base64[0]).then(
               (val) => {
                 let imageData: Uint8ClampedArray;
                 imageData = val;
                 const code = jsQR(imageData, img.w, img.h);
 
-                console.log(code);
                 if(code) {
                   alert(code.data);
                 }
