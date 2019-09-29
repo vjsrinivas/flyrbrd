@@ -1,5 +1,11 @@
 export interface EventData {
-    title?: string
-    date?: string
-    qr?: string
+    flyer: {
+        key: string,
+        title: string,
+        subtitles: string[],
+        date: string,
+        notes: string,
+        qr: string,
+        loc: string
+    };
 }

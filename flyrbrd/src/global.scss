@@ -24,3 +24,12 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+//@todo: Remove after Issue ionic-team/ionic#11640 is fixed
+.card-md .item-md.item-block:not(:last-child) .item-inner {
+  border-bottom: 1px solid #dedede;
+}
+
+.card-md .item-md.item-block:not(.item-input):not(.item-select):not(.item-radio):not(.item-checkbox) .item-inner {
+  border: 0;
+}
