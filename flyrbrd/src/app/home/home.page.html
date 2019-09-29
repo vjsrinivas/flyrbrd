@@ -1,6 +1,6 @@
 <ion-content>
   <div id="viewList" class="card">
-    <ion-button (click)="expand()" class="card" color="light" expand="full" fill="outline"><span class="btnText">{{viewListWord}}</span></ion-button>
+    <ion-button (click)="expand()" class="card" color="light" expand="full" fill="clear"><span class="btnText">{{viewListWord}}</span></ion-button>
     <ion-content class="body">
       <!--Events here-->
       <ion-list lines="full" *ngFor="let e of events$ | async">
