@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>form</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="backButton">Card Preview</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card class = "cardView">
+    <ion-card-header>
+      <ion-card-title><ion-input [(ngModel)]="event.title" value="{{event.title}}"></ion-input></ion-card-title> <!-- need to add function to change json -->
+      <ion-card-subtitle>
+        <ion-chip *ngFor = "let title of event.subtitles; let i = index" color="primary" (click)="changeTitle(title, i)">
+          <ion-label>{{title}}</ion-label>
+        </ion-chip>
+      </ion-card-subtitle>
+         <h6><strong><ion-input [(ngModel)]="event.loc" value="{{event.loc}}"></ion-input></strong></h6>
+    </ion-card-header>
+    <ion-card-content>
+  <p>{{event.notes}}</p>
+   <ion-button expand="block" fill="outline" (onclick)="updateEvent()">Add Event</ion-button>
+  </ion-card-content>
+ </ion-card>
 </ion-content>
