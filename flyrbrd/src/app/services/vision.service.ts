@@ -46,7 +46,7 @@ export class VisionService {
 
       if (textSummary.length) {
         const summary = textSummary[0].description;
-        console.log(summary);
+        alert(summary);
       }
 
       // figure out where the biggest bounding box is:

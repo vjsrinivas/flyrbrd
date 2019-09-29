@@ -44,17 +44,16 @@ export class HomePage {
 
   takePicture() {
     const cameraOptions = {
-      width: 640,
-      height: 640,
+      width: window.screen.width,
+      height: window.screen.height,
       quality: 85
     };
 
     CameraPreview.takePicture(cameraOptions).then(
       (base64) => {
-        this.vision.grab_packet_data(base64).subscribe(
+        this.vision.grab_packet_data(base64[0]).subscribe(
           (val) => {
-            const img = 'data:image/jpeg;base64,' + val;
-            this.vision.parse_packet_data(img);
+            this.vision.parse_packet_data(val);
           }, (innerErr) => {
             console.log(innerErr);
           }
