@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions } from '@ionic-native/camera-preview';
+import jsQR, { QRCode } from "jsqr";
+import { HomeService } from '../services/home.service';
 import { VisionService } from '../services/vision.service';
 import { LogicProvider } from '../services/read';
 import { Observable } from "rxjs";
@@ -19,7 +21,7 @@ export class HomePage {
   public totalEvents: number;
 
   constructor(private vision: VisionService,
-    public _read: LogicProvider) {
+    public _read: LogicProvider, private homeService: HomeService) {
     this.classExpand = 'card';
     this.viewListWord = 'VIEW LIST';
     this.totalEvents = 0;
@@ -58,8 +60,6 @@ export class HomePage {
 
   takePicture() {
     const cameraOptions = {
-      width: 640,
-      height: 640,
       quality: 85
     };
 
@@ -71,6 +71,25 @@ export class HomePage {
             this.vision.parse_packet_data(img);
           }, (innerErr) => {
             console.log(innerErr);
+          }
+        );
+
+        console.log("here goes getImageDimensions");
+        this.homeService.getImageDimensions(base64[0]).then(
+          (img) => {
+            this.homeService.jsQR_fromBase64(base64[0]).then(
+              (val) => {
+                let imageData: Uint8ClampedArray;
+                imageData = val;
+                const code = jsQR(imageData, img.w, img.h);
+
+                if(code) {
+                  alert(code.data);
+                }
+              }
+            );
+          }, (err) => {
+            console.log(err);
           }
         );
       },
