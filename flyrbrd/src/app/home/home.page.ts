@@ -6,6 +6,7 @@ import { VisionService } from '../services/vision.service';
 import { LogicProvider } from '../services/read';
 import { Observable } from "rxjs";
 import { EventData } from '../../interfaces/data.interface';
+import { Storage } from '@ionic/storage'
 
 
 @Component({
@@ -19,9 +20,10 @@ export class HomePage {
   public viewListWord: string;
   events$: Observable<EventData[]>;
   public totalEvents: number;
+  
 
   constructor(private vision: VisionService,
-    public _read: LogicProvider, private homeService: HomeService) {
+    public _read: LogicProvider, private homeService: HomeService, public storage: Storage) {
     this.classExpand = 'card';
     this.viewListWord = 'VIEW LIST';
     this.totalEvents = 0;
@@ -48,14 +50,30 @@ export class HomePage {
       (err) => { console.log(err); }
     );
 
+    //Previous events read from json file
     this.events$ = this._read.getData()
     this.events$.subscribe((res) => {
       this.totalEvents = res.length;
     })
+
+    //Storage length. If 0, no events found.
+    this.storage.length().then((num) => {
+      this.totalEvents = num;
+    }, (err) => {
+      console.log(err);
+    });
+    
+    if(this.totalEvents === 0) {
+
+    }
+    else {
+      //this.storage.keys().then()
+    }
   }
 
   ionViewDidEnter() {
     this.viewList = document.getElementById('viewList');
+
   }
 
   takePicture() {
